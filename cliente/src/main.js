@@ -17,7 +17,8 @@ Vue.use(require('vue-moment'));
 //Vue SocketIO
 Vue.use(new VueSocketIO({
   debug: true,
-  connection: 'http://127.0.0.1:3000'
+  connection: window.location.hostname,
+  //connection: 'http://127.0.0.1:3000'
 }))
 
 /* Boostrap */

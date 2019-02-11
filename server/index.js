@@ -1,6 +1,6 @@
-var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+//var app = require('express')();
+//var http = require('http').Server(app);
+//var io = require('socket.io')(http);
 var ultimasNotas = [];
 var usuarios = [];
 var chatUsuarios = [];
@@ -8,7 +8,7 @@ var formidableMiddleware = require('express-formidable');
 
 
 // Settings for CORS
-app.use(function (req, res, next) {
+/*app.use(function (req, res, next) {
 
   // Website you wish to allow to connect
   res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
@@ -25,7 +25,18 @@ app.use(function (req, res, next) {
 
   // Pass to next layer of middleware
   next();
-});
+});*/
+
+
+
+app.use(express.static(__dirname + "/public"));
+var port = process.env.PORT || 3000;
+var server = app.listen(port);
+var io = require("socket.io").listen(server);
+
+
+
+
 app.use(formidableMiddleware({
   encoding: 'utf-8',
   uploadDir: './descargas',
@@ -91,8 +102,6 @@ io.on('connection', function (socket) {
 });
 
 
-http.listen(3000, function () {
+/*http.listen(3000, function () {
   console.log('listening on *:3000');
-});
-
-
+});*/
